@@ -1,26 +1,23 @@
 /* eslint-disable @next/next/no-img-element */
 import { textgradient } from "@/app/(styles)/styles/themes";
-import { processIpfsUrl, shortenAddress } from "@/app/helper";
+import { processIpfsUrl, shortenAddress } from "@/app/utils/helper";
 import { getNftFromCollection } from "@/app/serverFunctions/functions";
 import Head from "next/head";
 import React from "react";
+import { redirect } from "next/navigation";
 // import { Metadata } from "next";
 
 const BASE_UI_URL = "http://localhost:30001/api/v1";
 const NODE_ENV = "development";
-
-// export const metadata: Metadata = {
-//   title: "My Page Title",
-//   property:"og:url",
-//   content={`${BASE_UI_URL}/nft/collection/detail/?nftCollectionAddress=${nftCollectionAddress}&tokenId=${tokenId}`}
-// };
 
 const CollectionDetailPage = async ({ searchParams }: any) => {
   const nftCollectionAddress = searchParams?.nftCollectionAddress;
   const tokenId = searchParams?.tokenId;
 
   const data = await getNftFromCollection({ nftCollectionAddress, tokenId });
-
+  if (data.message) {
+    redirect("/login");
+  }
   const nft = data.data;
 
   return (

@@ -1,41 +1,39 @@
 /* eslint-disable @next/next/no-img-element */
+"use client";
 import Link from "next/link";
-import ProductButton from "./components/buttonComponent";
 import { getAllCollections } from "./serverFunctions/functions";
 import { SECTION_WRAPPER } from "./(styles)/styles/themes";
 
-export default async function Home() {
-  const response = await getAllCollections();
-  const collectionsData = response?.data;
+import { useEffect, useState } from "react";
 
-  // console.log(collectionsData.data);
+export default function Home() {
+  const [collections, setCollections] = useState<any>(null);
+
+  async function getCollections() {
+    const response = await getAllCollections();
+
+    if (response?.message) {
+      window.location.href = "/login";
+      return;
+    }
+    if (response.data) setCollections(response?.data);
+  }
+
+  useEffect(() => {
+    getCollections();
+  }, []);
 
   return (
-    // <main className="flex min-h-screen flex-col items-center justify-between p-24">
-    //   <div className="flex flex-col">
-    //     <h1 className="mb-5">Home Page</h1>
-    //     {collectionsData?.data.map((each: any) => (
-    //       <>
-    //         <div>
-    //           <Link
-    //             href={`/nft/collection?nftCollectionAddress=${each.nftCollectionAddress}`}
-    //             className="cursor-pointer"
-    //           >
-    //             {each.name}
-    //           </Link>
-    //         </div>
-    //       </>
-    //     ))}
-    //   </div>
-    // </main>
     <div className={` px-4 md:px-0 py-5 md:py-10`}>
       <div className={`${SECTION_WRAPPER} container mx-auto `}>
         <h2 className="text-center text-3xl text-bold">Collections</h2>
-
+        <Link href={`/nft/create`}>
+          <button className="bg-red-600">Create</button>
+        </Link>
         {/* {isLoading && <MultiCardLoader />} */}
         <div className="flex m-2">
-          {collectionsData && collectionsData.length > 0 ? (
-            collectionsData.map((collection: any, index: number) => (
+          {collections && collections.length > 0 ? (
+            collections.map((collection: any, index: number) => (
               <Link
                 key={index}
                 href={`/nft/collection?nftCollectionAddress=${collection.nftCollectionAddress}`}

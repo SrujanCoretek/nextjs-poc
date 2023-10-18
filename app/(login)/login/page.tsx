@@ -6,12 +6,15 @@ import Link from "next/link";
 
 import { useForm } from "react-hook-form";
 
-// import login from "../components/serverFunctions/Login";
-
 import LoginButton from "../../components/LoginButton";
 import { login } from "../../serverFunctions/functions";
 import { useState } from "react";
 import { redirect } from "next/navigation";
+import {
+  serialize,
+  getClientCookieOnClient,
+  setClientCookie,
+} from "@/app/utils/cookie";
 
 interface Signin {
   email: string;
@@ -20,7 +23,7 @@ interface Signin {
 
 export default function SignIn() {
   const [user, setUser] = useState<any>("");
-  const [userData, setUserData] = useState<any>(null);
+  // const [userData, setUserData] = useState<any>(null);
   const [error, setError] = useState<any>(null);
   const {
     register,
@@ -32,6 +35,19 @@ export default function SignIn() {
   const handleClick = async () => {
     const payload = { email: watch("email"), password: watch("password") };
     const data = await login(payload);
+
+    // if (data.data) {
+    //   const serializedJWT = serialize("jwt", data.data.token);
+    //   const serializedUser = serialize("user", data.data.user);
+    //   if (serializedJWT !== null && serializedUser !== null) {
+    //     setClientCookie("jwt", serializedJWT);
+    //     setClientCookie("user", serializedUser);
+    //   }
+    //   const user = getClientCookieOnClient("user");
+    //   const jwt = getClientCookieOnClient("jwt");
+    //   console.log({ user });
+    //   console.log({ jwt });
+    // }
     if (data) {
       setUser(data);
       setError(null);
@@ -41,11 +57,10 @@ export default function SignIn() {
       setError(data.error.message);
       setUser(null);
     }
-    console.log({ data });
-    // console.log({ error });
+    // console.log({ data });
   };
   if (user) {
-    redirect("/users");
+    redirect("/");
   }
 
   return (

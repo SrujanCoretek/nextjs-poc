@@ -2,6 +2,8 @@
 import React, { useState } from "react";
 import GetUserButton from "../../components/buttonComponent";
 import { getUserFromApi } from "../../serverFunctions/functions";
+import { serialize, setClientCookie } from "@/app/utils/cookie";
+import { redirect } from "next/navigation";
 
 const Listings = () => {
   const [user, setUser] = useState<any>("");
@@ -14,6 +16,15 @@ const Listings = () => {
 
   const handleClick = async () => {
     const data = await getUserFromApi(walletAddress);
+    console.log({ data });
+    if (data.message) {
+      window.location.href = "/login";
+      return;
+    }
+    const serializedUser = serialize("user", data?.data);
+    if (serializedUser !== null) {
+      setClientCookie("user", serializedUser);
+    }
     if (data) {
       setUser(data);
       setError(null);

@@ -1,9 +1,10 @@
 import NftCardTwo from "@/app/components/NFtCardTwo";
-import { getPaginationArray } from "@/app/helper";
+import { getPaginationArray } from "@/app/utils/helper";
 import { getAllNftsByCollectionAddress } from "@/app/serverFunctions/functions";
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
 import React from "react";
+import { getClientCookie } from "@/app/utils/cookie";
+import { redirect } from "next/navigation";
 
 const NftCollectionAddress = async ({ searchParams }: any) => {
   const nftCollectionAddress = searchParams?.nftCollectionAddress;
@@ -14,17 +15,23 @@ const NftCollectionAddress = async ({ searchParams }: any) => {
     limit: limit,
   };
 
+  console.log({ page });
+
   const data = await getAllNftsByCollectionAddress({
     nftCollectionAddress,
     pagination,
   });
+
+  if (data.message) {
+    redirect("/login");
+  }
   const count = data.data.count;
   const items = data.data.items;
   // console.log(data.data);
   const paginationArray = getPaginationArray(count);
 
   return (
-    <div className="flex flex-col justify-center items-center  mt-40 text-xl">
+    <div className="flex flex-col justify-center items-center  mt-4 text-xl">
       {/* <ul>
         {items?.map((each: any) => (
           <Link
@@ -47,19 +54,23 @@ const NftCollectionAddress = async ({ searchParams }: any) => {
                 isLoading={false}
                 openItem={true}
                 key={index}
-                collectionImageUrl="ipfs://QmekPFe2VBGmFSYdcR7EPaoLVKWsCs76tGpqSTjAhikQjW"
+                collectionImageUrl="ipfs://QmeXawR1NoDrgKpkHk3XeFTTyjSsqjGjXQvnPPH5wLGDQZ"
                 // handleItemClick={handleItemClick}
               />
             </Link>
           );
         })}
       </div>
-      <ul className="flex ">
+      <ul className="flex mb-5 ">
         {paginationArray.map((each) => (
           <Link
             key={each}
             href={`/nft/collection?nftCollectionAddress=${nftCollectionAddress}&page=${each}&limit=12`}
-            className="m-2"
+            className={`text-[#0D00FF] rounded-lg border-gray-300 px-4 py-2 leading-tight hover:bg-gray-100 hover:text-gray-700 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white ${
+              parseInt(page) === each
+                ? "bg-gradient-to-r from-pink-400 via-purple-700 to-cyan-400 text-white"
+                : ""
+            }`}
           >
             {each}
           </Link>
