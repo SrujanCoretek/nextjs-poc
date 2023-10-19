@@ -1,5 +1,3 @@
-"use client";
-
 //usage
 // in browser
 // const allCookies = cookie.get(document.cookie);
@@ -20,7 +18,7 @@ function encodeToBase64(val: string) {
   // }
 }
 
-function decodeFromBase64(val: string) {
+export function decodeFromBase64(val: string) {
   return atob(val);
   // if (isBrowser()) {
   //   return window.atob(val);
@@ -30,11 +28,12 @@ function decodeFromBase64(val: string) {
 }
 
 // ucs-2 string to base64 encoded ascii
-function utoa(str: string) {
+export function utoa(str: string) {
   return encodeToBase64(unescape(encodeURIComponent(str)));
 }
 // base64 encoded ascii to ucs-2 string
-function atou(str: string) {
+export function atou(str: string) {
+  console.log({ str });
   // console.log("atou", str);
 
   return decodeURIComponent(escape(decodeFromBase64(str)));
