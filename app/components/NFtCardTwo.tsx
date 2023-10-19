@@ -49,7 +49,7 @@ const NftCardTwo = ({ item, collectionImageUrl, handleItemClick }: any) => {
                     alt="CompanyIcon"
                     src={
                       collectionImageUrl
-                        ? collectionImageUrl
+                        ? processIpfsUrl(collectionImageUrl)
                         : "/svg/collection-display.svg"
                     }
                     width="100"

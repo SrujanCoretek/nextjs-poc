@@ -44,7 +44,7 @@ const InputPage = ({ nftCollectionAddress, page, limit }: any) => {
     // console.log({ encodedState });
 
     router.push(
-      `/nft/collection?nftCollectionAddress=${nftCollectionAddress}&page=${page}&limit=${limit}&state=${encodedState}`
+      `/nft/collection?nftCollectionAddress=${nftCollectionAddress}&page=${1}&limit=${limit}&state=${encodedState}`
     );
   };
 

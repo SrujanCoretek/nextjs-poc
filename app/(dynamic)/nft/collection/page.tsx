@@ -79,7 +79,7 @@ const NftCollectionAddress = async ({ searchParams }: any) => {
             key={each}
             href={`/nft/collection?nftCollectionAddress=${nftCollectionAddress}&page=${
               each || 1
-            }&limit=12&state=${state}`}
+            }&limit=12${state !== undefined ? `&state=${state}` : ""}`}
             className={`text-[#0D00FF] rounded-lg border-gray-300 px-4 py-2 leading-tight hover:bg-gray-100 hover:text-gray-700 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white ${
               parseInt(page) === each
                 ? "bg-gradient-to-r from-pink-400 via-purple-700 to-cyan-400 text-white"
