@@ -172,6 +172,33 @@ export async function getNftFromCollection(payload: any) {
   }
 }
 
+export async function getMarketplaceItem(payload: any) {
+  try {
+    const token = cookies().get("token");
+    if (!token) {
+      redirect("/login");
+      // return { message: "please login" };
+    }
+    const options = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payload),
+    };
+    // console.log({ options });
+    const res = await fetch(
+      "http://localhost:4000/api/v1/marketplace/listing/get",
+      options
+    );
+    // console.log({ res });
+    const data = await res.json();
+    return data;
+  } catch (error) {
+    return error;
+  }
+}
+
 export async function getAllListings(payload: any) {
   try {
     const token = cookies().get("token");
