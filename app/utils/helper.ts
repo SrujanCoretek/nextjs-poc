@@ -20,6 +20,19 @@ export function shortenAddress(address: string) {
   return `${prefix}...${suffix}`;
 }
 
+export const displayPrice = (priceValue: any) => {
+  let price = priceValue;
+  if (typeof priceValue == "string") {
+    price = parseFloat(priceValue);
+  }
+
+  const formatter = Intl.NumberFormat("en", {
+    notation: "compact",
+    maximumFractionDigits: 2,
+  });
+  return formatter.format(price);
+};
+
 // export function useReducerPlus<T extends object>(initialState: T) {
 //   return useReducer((state: T, update: Partial<T>) => {
 //     if (update) {

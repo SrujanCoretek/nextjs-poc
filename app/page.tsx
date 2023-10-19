@@ -30,7 +30,10 @@ export default function Home() {
       <div className={`${SECTION_WRAPPER} container mx-auto `}>
         <h2 className="text-center text-3xl text-bold">Collections</h2>
         <Link href={`/nft/create`}>
-          <button className="bg-red-600">Create</button>
+          <button className="bg-red-600 m-4">Create</button>
+        </Link>
+        <Link href={`/nft/explore?page=1&limit=12`}>
+          <button className="bg-red-600">Explore</button>
         </Link>
         {/* {isLoading && <MultiCardLoader />} */}
         <div className="flex m-2">

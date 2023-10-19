@@ -1,0 +1,19 @@
+import React from 'react';
+
+export default function MyProperty() {
+  return (
+    <svg
+      width="20"
+      height="20"
+      viewBox="0 0 20 20"
+      fill="currentColor"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        opacity="0.7"
+        d="M17.8824 18H19.6706V20H0V18H1.78824V1C1.78824 0.734784 1.88244 0.48043 2.05012 0.292893C2.2178 0.105357 2.44522 0 2.68235 0H16.9882C17.2254 0 17.4528 0.105357 17.6205 0.292893C17.7882 0.48043 17.8824 0.734784 17.8824 1V18ZM6.25882 9V11H8.94118V9H6.25882ZM6.25882 5V7H8.94118V5H6.25882ZM6.25882 13V15H8.94118V13H6.25882ZM10.7294 13V15H13.4118V13H10.7294ZM10.7294 9V11H13.4118V9H10.7294ZM10.7294 5V7H13.4118V5H10.7294Z"
+        fill="currentColor"
+      />
+    </svg>
+  );
+}
