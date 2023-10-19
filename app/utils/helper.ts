@@ -19,3 +19,15 @@ export function shortenAddress(address: string) {
   const suffix = address?.substring(address.length - 4, address.length);
   return `${prefix}...${suffix}`;
 }
+
+// export function useReducerPlus<T extends object>(initialState: T) {
+//   return useReducer((state: T, update: Partial<T>) => {
+//     if (update) {
+//       return {
+//         ...state,
+//         ...update,
+//       };
+//     }
+//     return state;
+//   }, initialState);
+// }

@@ -3,9 +3,10 @@ import React, { useState } from "react";
 import GetUserButton from "../../components/buttonComponent";
 import { getUserFromApi } from "../../serverFunctions/functions";
 import { serialize, setClientCookie } from "@/app/utils/cookie";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 const Listings = () => {
+  const router = useRouter();
   const [user, setUser] = useState<any>("");
   const [error, setError] = useState<any>(null);
   const [walletAddress, setWalletAddress] = useState("");
@@ -18,7 +19,7 @@ const Listings = () => {
     const data = await getUserFromApi(walletAddress);
     console.log({ data });
     if (data.message) {
-      window.location.href = "/login";
+      router.push("/login");
       return;
     }
     const serializedUser = serialize("user", data?.data);

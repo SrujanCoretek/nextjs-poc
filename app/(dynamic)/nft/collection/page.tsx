@@ -3,7 +3,7 @@ import { getPaginationArray } from "@/app/utils/helper";
 import { getAllNftsByCollectionAddress } from "@/app/serverFunctions/functions";
 import Link from "next/link";
 import React from "react";
-import { getClientCookie } from "@/app/utils/cookie";
+// import { getClientCookie } from "@/app/utils/cookie";
 import { redirect } from "next/navigation";
 
 const NftCollectionAddress = async ({ searchParams }: any) => {
@@ -27,21 +27,11 @@ const NftCollectionAddress = async ({ searchParams }: any) => {
   }
   const count = data.data.count;
   const items = data.data.items;
-  // console.log(data.data);
+  console.log(count);
   const paginationArray = getPaginationArray(count);
 
   return (
     <div className="flex flex-col justify-center items-center  mt-4 text-xl">
-      {/* <ul>
-        {items?.map((each: any) => (
-          <Link
-            key={each.tokenId}
-            href={`/nft/collection/detail?nftCollectionAddress=${each.nftCollectionAddress}&tokenId=${each.tokenId}`}
-          >
-            <li>{each.name}</li>
-          </Link>
-        ))}
-      </ul> */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 my-12 sm:px-10 ">
         {items?.map((item: any, index: number) => {
           return (

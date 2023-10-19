@@ -5,15 +5,17 @@ import { getAllCollections } from "./serverFunctions/functions";
 import { SECTION_WRAPPER } from "./(styles)/styles/themes";
 
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
+  const router = useRouter();
   const [collections, setCollections] = useState<any>(null);
 
   async function getCollections() {
     const response = await getAllCollections();
 
     if (response?.message) {
-      window.location.href = "/login";
+      router.push("/login");
       return;
     }
     if (response.data) setCollections(response?.data);
