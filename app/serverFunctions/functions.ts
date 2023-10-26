@@ -121,10 +121,11 @@ export async function getAllCollections() {
 
 export async function getAllNftsByCollectionAddress(payload: any) {
   try {
-    const token = cookies().get("token");
-    if (!token) {
-      return { message: "please login" };
-    }
+    console.log({ payload });
+    // const token = cookies().get("token");
+    // if (!token) {
+    //   return { message: "please login" };
+    // }
     const options = {
       method: "POST",
       headers: {
@@ -139,9 +140,11 @@ export async function getAllNftsByCollectionAddress(payload: any) {
     );
     // console.log({ res });
     const data = await res.json();
-    return data;
+    // console.log(data.data);
+    // console.log("-------------------------------------");
+    return [data.data, null] as [any, null];
   } catch (error) {
-    return error;
+    return [null, error] as [null, any];
   }
 }
 

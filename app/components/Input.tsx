@@ -30,7 +30,7 @@ const InputPage = ({ nftCollectionAddress, page, limit }: any) => {
   const handleInputChange = (e: any) => {
     if (e.target.value === "") {
       router.push(
-        `/nft/collection?nftCollectionAddress=${nftCollectionAddress}&page=${1}&limit=${limit}`
+        `/nft/collection?nftCollectionAddress=${nftCollectionAddress}`
       );
     }
     setInputData(e.target.value);
@@ -38,13 +38,13 @@ const InputPage = ({ nftCollectionAddress, page, limit }: any) => {
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
-    // console.log({ state });
+    console.log({ state });
     const stringifiedState = JSON.stringify(state);
     const encodedState = utoa(stringifiedState);
     // console.log({ encodedState });
 
     router.push(
-      `/nft/collection?nftCollectionAddress=${nftCollectionAddress}&page=${1}&limit=${limit}&state=${encodedState}`
+      `/nft/collection?nftCollectionAddress=${nftCollectionAddress}&state=${encodedState}`
     );
   };
 
