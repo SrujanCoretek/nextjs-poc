@@ -1,11 +1,11 @@
 /* eslint-disable @next/next/no-img-element */
-import { textgradient } from "@/app/(styles)/styles/themes";
-import { processIpfsUrl, shortenAddress } from "@/app/utils/helper";
-import { getNftFromCollection } from "@/app/serverFunctions/functions";
+
 import Head from "next/head";
 import React from "react";
 import { redirect } from "next/navigation";
-// import { Metadata } from "next";
+import { textgradient } from "@/src/app/(styles)/styles/themes";
+import { processIpfsUrl, shortenAddress } from "@/src/utils/helper";
+import { getNftFromCollection } from "@/src/app/serverFunctions/functions";
 
 const BASE_UI_URL = "http://localhost:30001/api/v1";
 const NODE_ENV = "development";

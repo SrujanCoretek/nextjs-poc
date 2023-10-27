@@ -1,7 +1,8 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 import React, { FC } from "react";
-import { NFT_CARD_BACKGROUND } from "../(styles)/styles/themes";
+
+import { NFT_CARD_BACKGROUND } from "../app/(styles)/styles/themes";
 import { processIpfsUrl } from "../utils/helper";
 // import Share from "./PopOver/Share";
 // import { NFT_CARD_BACKGROUND } from "../styles/theme";

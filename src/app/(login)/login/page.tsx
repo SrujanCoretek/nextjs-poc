@@ -3,18 +3,12 @@
 import Head from "next/head";
 import Link from "next/link";
 // import Input from "../../components/Input";
-
 import { useForm } from "react-hook-form";
 
-import LoginButton from "../../components/LoginButton";
 import { login } from "../../serverFunctions/functions";
 import { useState } from "react";
 import { redirect } from "next/navigation";
-import {
-  serialize,
-  getClientCookieOnClient,
-  setClientCookie,
-} from "@/app/utils/cookie";
+import LoginButton from "@/src/components/LoginButton";
 
 interface Signin {
   email: string;

@@ -1,9 +1,9 @@
 "use client";
 import React, { useState } from "react";
-import GetUserButton from "../../components/buttonComponent";
 import { getUserFromApi } from "../../serverFunctions/functions";
-import { serialize, setClientCookie } from "@/app/utils/cookie";
 import { useRouter } from "next/navigation";
+import GetUserButton from "@/src/components/buttonComponent";
+import { serialize, setClientCookie } from "@/src/utils/cookie";
 
 const Listings = () => {
   const router = useRouter();

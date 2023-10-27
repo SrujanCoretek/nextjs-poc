@@ -9,9 +9,10 @@ import {
   NFT_CARD_DARK_BG,
   NFT_CARD_LIGHT_BG,
   NFT_USER_IMAGE,
-} from "../(styles)/styles/themes";
-import { displayPrice, processIpfsUrl } from "../utils/helper";
+} from "../app/(styles)/styles/themes";
+
 import { useRouter } from "next/navigation";
+import { displayPrice, processIpfsUrl } from "../utils/helper";
 
 // import { useReducerPlus } from '../utils/hooks';
 // import Share from "./PopOver/Share";

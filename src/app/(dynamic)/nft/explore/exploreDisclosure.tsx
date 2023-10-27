@@ -1,5 +1,6 @@
 "use client";
-import { utoa } from "@/app/utils/cookie";
+
+import { utoa } from "@/src/utils/cookie";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 

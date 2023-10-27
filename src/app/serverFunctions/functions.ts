@@ -1,15 +1,6 @@
 "use server";
 import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
-// import axios from "axios";
-
-// const instance = axios.create({
-//   timeout: 360000,
-// });
-
-// instance.interceptors.response.use((response) => {
-//   return response.data;
-// }, null);
 
 export async function setServerCookie(name: any, value: any) {
   cookies().set({

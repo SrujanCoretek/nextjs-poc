@@ -1,16 +1,15 @@
-import { getPaginationArray } from "@/app/utils/helper";
-import {
-  getAllListings,
-  getAllNftsByCollectionAddress,
-} from "@/app/serverFunctions/functions";
 import Link from "next/link";
 import React from "react";
 
 import { redirect } from "next/navigation";
-import InputPage from "@/app/components/Input";
-import { atou } from "@/app/utils/cookie";
+
 import ExploreDisclosure from "./exploreDisclosure";
-import NftCard from "@/app/components/NftCard";
+
+import { getPaginationArray } from "@/src/utils/helper";
+import { getAllListings } from "@/src/app/serverFunctions/functions";
+import InputPage from "@/src/components/Input";
+import { atou } from "@/src/utils/cookie";
+import NftCard from "@/src/components/NftCard";
 
 const NftExplore = async ({ searchParams }: any) => {
   const ceekUsdPrice = 0.03412474;

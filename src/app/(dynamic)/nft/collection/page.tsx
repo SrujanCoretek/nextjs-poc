@@ -1,17 +1,18 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
 import React, { useState } from "react";
-import NftCardTwo from "@/app/components/NFtCardTwo";
-import { getAllNftsByCollectionAddress } from "@/app/serverFunctions/functions";
 
-import InputPage from "@/app/components/Input";
-import { atou, utoa } from "@/app/utils/cookie";
-import usePaginatedFetch from "@/app/utils/usePaginationHook";
-import useInput from "@/app/utils/useInput";
 import { useRouter } from "next/navigation";
-import ButtonLoader from "@/app/components/Loaders/buttonLoader";
+
 import Link from "next/link";
-import { getEncodedState } from "@/app/utils/helper";
+
+import NftCardTwo from "@/src/components/NFtCardTwo";
+import { getAllNftsByCollectionAddress } from "@/src/app/serverFunctions/functions";
+import { atou } from "@/src/utils/cookie";
+import usePaginatedFetch from "@/src/utils/usePaginationHook";
+import useInput from "@/src/utils/useInput";
+import ButtonLoader from "@/src/components/Loaders/buttonLoader";
+import { getEncodedState } from "@/src/utils/helper";
 
 const NftCollectionAddress = ({ searchParams }: any) => {
   const router = useRouter();

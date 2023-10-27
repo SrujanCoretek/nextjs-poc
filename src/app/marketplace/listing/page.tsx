@@ -1,10 +1,11 @@
 /* eslint-disable @next/next/no-img-element */
-import { textgradient } from "@/app/(styles)/styles/themes";
-import { processIpfsUrl, shortenAddress } from "@/app/utils/helper";
-import { getMarketplaceItem } from "@/app/serverFunctions/functions";
+
 import Head from "next/head";
 import React from "react";
 import { redirect } from "next/navigation";
+import { textgradient } from "../../(styles)/styles/themes";
+import { processIpfsUrl, shortenAddress } from "@/src/utils/helper";
+import { getMarketplaceItem } from "../../serverFunctions/functions";
 // import { Metadata } from "next";
 
 const BASE_UI_URL = "http://localhost:30001/api/v1";

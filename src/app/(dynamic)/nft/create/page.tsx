@@ -1,10 +1,11 @@
 "use client";
-import { INPUT_LABEL } from "@/app/(styles)/styles/themes";
-import { acceptedTypes } from "@/app/utils/constants";
-import { NftInput } from "@/app/utils/ui";
+
+import { NftInput } from "@/src/utils/ui";
 import React, { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { uploadToIpfs } from "./createServerFunctions";
+import { INPUT_LABEL } from "@/src/app/(styles)/styles/themes";
+import { acceptedTypes } from "@/src/utils/constants";
 
 const NftCreate = () => {
   let isDark = false;
