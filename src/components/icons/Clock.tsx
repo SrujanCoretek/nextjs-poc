@@ -1,4 +1,4 @@
-import { textgradient } from "@/src/app/(styles)/styles/themes";
+import { textgradient } from "@/src/styles/themes";
 import React, { useEffect, useState } from "react";
 
 interface Props {

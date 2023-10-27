@@ -2,10 +2,9 @@
 "use client";
 import Link from "next/link";
 import { getAllCollections } from "./serverFunctions/functions";
-import { SECTION_WRAPPER } from "./(styles)/styles/themes";
-
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import { SECTION_WRAPPER } from "../styles/themes";
 
 export default function Home() {
   const router = useRouter();

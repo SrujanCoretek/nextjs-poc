@@ -4,8 +4,9 @@ import { NftInput } from "@/src/utils/ui";
 import React, { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { uploadToIpfs } from "./createServerFunctions";
-import { INPUT_LABEL } from "@/src/app/(styles)/styles/themes";
+
 import { acceptedTypes } from "@/src/utils/constants";
+import { INPUT_LABEL } from "@/src/styles/themes";
 
 const NftCreate = () => {
   let isDark = false;

@@ -3,9 +3,10 @@
 import Head from "next/head";
 import React from "react";
 import { redirect } from "next/navigation";
-import { textgradient } from "../../(styles)/styles/themes";
+
 import { processIpfsUrl, shortenAddress } from "@/src/utils/helper";
 import { getMarketplaceItem } from "../../serverFunctions/functions";
+import { textgradient } from "@/src/styles/themes";
 // import { Metadata } from "next";
 
 const BASE_UI_URL = "http://localhost:30001/api/v1";
