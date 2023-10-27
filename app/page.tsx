@@ -41,7 +41,7 @@ export default function Home() {
             collections.map((collection: any, index: number) => (
               <Link
                 key={index}
-                href={`/nft/collection?nftCollectionAddress=${collection.nftCollectionAddress}&page=1&limit=12`}
+                href={`/nft/collection?nftCollectionAddress=${collection.nftCollectionAddress}`}
                 className="m-2"
               >
                 <div

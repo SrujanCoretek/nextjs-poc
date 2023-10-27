@@ -33,12 +33,14 @@ interface PaginatedFetchResult {
   data: any[] | null;
   error: string | null;
   page: number;
+  resetPage: number;
   hasMore: boolean;
   setDataFilter: () => Promise<void>;
   clearDataFilter: () => void;
   getInitialState: () => void;
   resetData: () => void;
   paginate: () => void;
+  filterPaginate: () => Promise<void>;
   retryErroredPage: () => void;
   lastElementRef: (node: any) => void;
 }
@@ -180,12 +182,13 @@ export default function usePaginatedFetch(
   }, [state.hasMore, state.loading, dataRef.current.filterMode]);
 
   const filterPaginate = async () => {
+    dataRef.current.filterMode = true;
     const pgNo = 1;
     const st: Partial<PaginatedFetchState> = {};
     const count = totalItemsRef.current.count;
     const calc = Math.ceil(count / 12);
     const lastOffset = calc > 0 ? calc : 1;
-    dataRef.current.filterMode = true;
+
     if (pgNo > lastOffset) {
       state.hasMore = false;
       state.loading = false;
@@ -227,8 +230,9 @@ export default function usePaginatedFetch(
 
   const setDataFilter = useCallback(async () => {
     if (state.loading) return;
-
+    dataRef.current.filterMode = true;
     try {
+      resetData();
       await filterPaginate();
     } catch (error) {
       console.error("Error filtering data:", error);
@@ -238,10 +242,12 @@ export default function usePaginatedFetch(
   const clearDataFilter = useCallback(async () => {
     if (dataRef.current.filterMode) {
       resetData();
+      console.log("entered clearDataFilter");
 
       const pgNo = 1;
 
       const [data, err] = await api(pgNo);
+      console.log("clearDataFilter", data);
       if (data) {
         const dataArr = dataArrayCB ? dataArrayCB(data) : [];
         dataRef.current.data = dataArr;
@@ -277,6 +283,7 @@ export default function usePaginatedFetch(
 
   const resetData = useCallback(() => {
     dispatch(initialState());
+    console.log("entered resetData");
   }, [initialState]);
 
   return {
@@ -286,6 +293,7 @@ export default function usePaginatedFetch(
     hasMore: state.hasMore,
     error: state.error,
     page: state.page < startPage ? startPage : state.page,
+    resetPage: 1,
     setDataFilter,
     clearDataFilter,
     resetData,
@@ -293,5 +301,6 @@ export default function usePaginatedFetch(
     paginate,
     retryErroredPage,
     lastElementRef,
+    filterPaginate,
   };
 }

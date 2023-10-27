@@ -1,3 +1,5 @@
+import { utoa } from "./cookie";
+
 export function getPaginationArray(count: number) {
   const pageCount = Math.ceil(count / 12);
   const paginationArray = Array.from(
@@ -31,6 +33,13 @@ export const displayPrice = (priceValue: any) => {
     maximumFractionDigits: 2,
   });
   return formatter.format(price);
+};
+
+export const getEncodedState = (obj: any) => {
+  const stringifiedState = JSON.stringify(obj);
+
+  const encodedState = utoa(stringifiedState);
+  return encodedState;
 };
 
 // export function useReducerPlus<T extends object>(initialState: T) {

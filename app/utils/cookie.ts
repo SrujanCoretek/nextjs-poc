@@ -33,7 +33,7 @@ export function utoa(str: string) {
 }
 // base64 encoded ascii to ucs-2 string
 export function atou(str: string) {
-  console.log({ str });
+  // console.log({ str });
   // console.log("atou", str);
 
   return decodeURIComponent(escape(decodeFromBase64(str)));

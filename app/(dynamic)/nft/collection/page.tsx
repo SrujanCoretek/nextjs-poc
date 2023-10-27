@@ -5,28 +5,28 @@ import NftCardTwo from "@/app/components/NFtCardTwo";
 import { getAllNftsByCollectionAddress } from "@/app/serverFunctions/functions";
 
 import InputPage from "@/app/components/Input";
-import { atou } from "@/app/utils/cookie";
+import { atou, utoa } from "@/app/utils/cookie";
 import usePaginatedFetch from "@/app/utils/usePaginationHook";
 import useInput from "@/app/utils/useInput";
 import { useRouter } from "next/navigation";
 import ButtonLoader from "@/app/components/Loaders/buttonLoader";
 import Link from "next/link";
+import { getEncodedState } from "@/app/utils/helper";
 
 const NftCollectionAddress = ({ searchParams }: any) => {
   const router = useRouter();
-  const [filterValue, setFilterValue] = useState("");
   const [searchInputRef, getSearchInput] = useInput();
-
+  const [filterMode, setFilterMode] = useState(false);
   const nftCollectionAddress = searchParams?.nftCollectionAddress;
+  const searchState = searchParams?.state;
+  const decodedState = searchState && JSON.parse(atou(searchState));
 
   const {
     data: docs,
     hasMore,
-    resetData,
     getInitialState,
-    setDataFilter,
+    filterPaginate,
     lastElementRef,
-    clearDataFilter,
   } = usePaginatedFetch(
     (page: number) =>
       getAllNftsByCollectionAddress({
@@ -35,59 +35,57 @@ const NftCollectionAddress = ({ searchParams }: any) => {
           offset: page,
           limit: 12,
         },
-        ...(searchInputRef?.current?.value
-          ? { filter: { searchInput: searchInputRef?.current?.value } }
-          : {}),
+        ...(filterMode && searchState ? { filter: decodedState } : {}),
       }),
 
     (respData) => respData?.items
   );
-  console.log({ docs });
 
   const handleInputChange = async (e: any) => {
-    setFilterValue(e.target.value);
+    setFilterMode(true);
+
     if (e.target.value === "") {
+      setFilterMode(false);
       router.push(
         `/nft/collection?nftCollectionAddress=${nftCollectionAddress}`
       );
 
       getInitialState();
+    } else {
+      const encodedState = getEncodedState({
+        searchInput: searchInputRef.current?.value,
+      });
+      router.push(
+        `/nft/collection?nftCollectionAddress=${nftCollectionAddress}&state=${encodedState}`
+      );
     }
   };
 
-  async function refreshItems() {
-    resetData();
-    setDataFilter();
+  async function getFilteredItems() {
+    if (filterMode && searchState) await filterPaginate();
   }
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     const searchInput = searchInputRef?.current?.value;
 
     if (e.key === "Enter" && searchInput !== "") {
-      refreshItems();
+      getFilteredItems();
     }
   };
 
   return (
     <div className="flex flex-col justify-center items-center  mt-4 text-xl">
-      {/* <InputPage
-        nftCollectionAddress={nftCollectionAddress}
-        page={page || 1}
-        limit={limit || 12}
-        ref={searchInputRef}
-      /> */}
       <div className="flex mt-3 w-full justify-center">
         <input
           type="search"
           className="w-50 px-4 py-2 rounded-md border border-gray-300 focus:ring focus:ring-blue-400 focus:border-blue-400"
           placeholder="Search"
           onChange={handleInputChange}
-          value={filterValue}
           onKeyDown={handleKeyDown}
           ref={searchInputRef}
         />
         <button
-          onClick={() => refreshItems()}
+          onClick={() => getFilteredItems()}
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50"
         >
           Search
