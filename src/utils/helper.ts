@@ -22,6 +22,56 @@ export function shortenAddress(address: string) {
   return `${prefix}...${suffix}`;
 }
 
+export const openWindow = (
+  url: string,
+  title = "_blank",
+  w = 500,
+  h = 500,
+  cb = () => {
+    // Intentionally empty
+  }
+) => {
+  const hasSpace = window.matchMedia(
+    `(min-width: ${w + 20}px) and (min-height: ${h + 20}px)`
+  ).matches;
+
+  const targetWidth = hasSpace ? w : null;
+  const targetHeight = hasSpace ? h : null;
+
+  const features = [];
+
+  if (targetWidth !== null) {
+    features.push(`width=${targetWidth}`);
+  }
+
+  if (targetHeight !== null) {
+    features.push(`height=${targetHeight}`);
+  }
+
+  features.push("scrollbars=1");
+
+  const newWindow = window.open(url, title, features.join(","));
+
+  const timer = setInterval(function () {
+    if (newWindow?.closed) {
+      clearInterval(timer);
+      cb();
+    }
+  }, 1000);
+
+  return newWindow;
+};
+
+export function qp(obj: any) {
+  const tokens = [];
+  for (const [k, v] of Object.entries(obj)) {
+    if (v) {
+      tokens.push(`${k}=${v}`);
+    }
+  }
+  return tokens.join("&");
+}
+
 export const displayPrice = (priceValue: any) => {
   let price = priceValue;
   if (typeof priceValue == "string") {
