@@ -1,3 +1,4 @@
+@import './main.css';
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -16,3 +17,9 @@
   }
 }
 
+.textMultiColorGradient {
+  background: linear-gradient(90deg, #0c50ff 0%, #619bfe 10.52%, #ff74f1 83%);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 600;
+}
