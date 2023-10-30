@@ -1,4 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
+"use client";
+
 import React, {
   useEffect,
   useCallback,
@@ -93,7 +95,7 @@ export default function usePaginatedFetch(
       filterMode: false,
     }
   );
-
+  // console.log(state.error);
   const observer = useRef<IntersectionObserver | null>(null);
 
   const lastElementRef = useCallback(
@@ -114,12 +116,13 @@ export default function usePaginatedFetch(
   );
 
   const fetchData = async (retry = false) => {
+    console.log("fetch Data triggered");
     if ((state.error || retry) && state.loading && !state.hasMore) return;
 
     const pgNo = state.page + 1;
     const count = totalItemsRef.current.count;
     const lastOffset = Math.ceil(count / 12);
-    console.log({ pgNo, lastOffset, count });
+    // console.log({ pgNo, lastOffset, count });
 
     if (pgNo > lastOffset) {
       dispatch({ loading: false, hasMore: false });
@@ -130,8 +133,9 @@ export default function usePaginatedFetch(
 
     try {
       const [data, err] = await api(pgNo);
-      totalItemsRef.current.count = data.count;
+      // totalItemsRef.current.count = data.count;
       dispatch({ totalItems: data.count });
+      setTotalCount(data.count);
       const st: Partial<PaginatedFetchState> = {};
 
       if (data) {
@@ -144,6 +148,7 @@ export default function usePaginatedFetch(
           st.hasMore = false;
         }
       } else {
+        console.log(err.message);
         st.error = JSON.stringify(err || {});
         st.page = pgNo - 1;
       }
@@ -161,8 +166,24 @@ export default function usePaginatedFetch(
     }
   };
 
+  async function fetchInitialData() {
+    try {
+      const pgNo = state.page + 1;
+      const [data, error] = await api(pgNo);
+      if (data) {
+        const count = data.count;
+        if (count > 0) {
+          setTotalCount(count);
+          fetchData();
+        }
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   useEffect(() => {
-    fetchData();
+    fetchInitialData();
 
     return () => {
       resetData();
@@ -197,8 +218,8 @@ export default function usePaginatedFetch(
     try {
       dispatch({ loading: true, page: pgNo, error: null });
       const [data, err] = await api(pgNo);
-      totalItemsRef.current.count = data.count;
-
+      // totalItemsRef.current.count = data.count;
+      setTotalCount(data.count);
       const count = totalItemsRef.current.count;
       const calc = Math.ceil(count / 12);
       const lastOffset = calc > 0 ? calc : 1;
@@ -285,6 +306,11 @@ export default function usePaginatedFetch(
     dispatch(initialState());
     console.log("entered resetData");
   }, [initialState]);
+
+  const setTotalCount = (count: number) => {
+    totalItemsRef.current.count = count;
+    dispatch({ totalItems: count });
+  };
 
   return {
     loading: state.loading,
