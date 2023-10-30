@@ -13,11 +13,21 @@ import { getEncodedState } from "@/src/utils/helper";
 function NftCollectionAddress({ searchParams }: any) {
   const router = useRouter();
 
-  const [searchInputRef, getSearchInput] = useInput();
+  const [searchInputRef, getSearchInput] = useInput(); // input that user enters
   const [searchState, setSearchState] = useState(searchParams?.state);
+  const [localState, setLocalState] = useState({});
   const [filterMode, setFilterMode] = useState(false);
   const nftCollectionAddress = searchParams?.nftCollectionAddress;
-  const decodedState = searchState && JSON.parse(atou(searchState));
+
+  const encodedInitialState = getEncodedState({});
+
+  const encodedState = getEncodedState(localState);
+
+  console.log(encodedState);
+
+  const decodedSearchInput = localState ? JSON.parse(atou(encodedState)) : null;
+
+  console.log({ decodedSearchInput });
 
   const {
     data: docs,
@@ -33,7 +43,9 @@ function NftCollectionAddress({ searchParams }: any) {
           offset: page,
           limit: 12,
         },
-        ...(filterMode && searchState ? { filter: decodedState } : {}),
+        ...(filterMode && decodedSearchInput.searchInput
+          ? { filter: { searchInput: decodedSearchInput?.searchInput } }
+          : {}),
       }),
     (respData) => respData?.items
   );
@@ -44,6 +56,10 @@ function NftCollectionAddress({ searchParams }: any) {
       searchInput: searchInputRef.current?.value,
     });
     setSearchState(encodedState);
+    setLocalState({
+      ...localState,
+      searchInput: searchInputRef.current?.value,
+    });
   };
 
   const handleInputChange = async (e: any) => {
@@ -51,26 +67,35 @@ function NftCollectionAddress({ searchParams }: any) {
 
     if (e.target.value === "") {
       setFilterMode(false);
+      setLocalState({});
       getInitialState();
       router.push(
-        `/nft/collection?nftCollectionAddress=${nftCollectionAddress}`
+        `/nft/collection?nftCollectionAddress=${nftCollectionAddress}&state=${encodedInitialState}`
       );
     } else {
       updateSearchState();
     }
   };
+  console.log({ localState });
 
-  const handleRoute = (searchState: any) => {
+  const handleRoute = () => {
     router.push(
-      `/nft/collection?nftCollectionAddress=${nftCollectionAddress}&state=${searchState}`
+      `/nft/collection?nftCollectionAddress=${nftCollectionAddress}&state=${encodedState}`
     );
   };
 
-  // Fetch filtered items and update route
+  useEffect(() => {
+    if (typeof window !== undefined) {
+      router.push(
+        `/nft/collection?nftCollectionAddress=${nftCollectionAddress}&state=${encodedInitialState}`
+      );
+    }
+  }, []);
+
   async function getFilteredItems() {
-    handleRoute(searchState);
-    console.log("searchState", searchState);
-    console.log("filterMode", filterMode);
+    handleRoute();
+    // console.log("searchState", searchState);
+    // console.log("filterMode", filterMode);
     if (filterMode && searchState) {
       await filterPaginate();
     }
