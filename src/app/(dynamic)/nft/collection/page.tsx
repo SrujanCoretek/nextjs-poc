@@ -14,7 +14,7 @@ import {
 import { atou } from "@/src/utils/cookie";
 import { getEncodedState } from "@/src/utils/helper";
 import CopyImage from "@/src/components/copyImage";
-import { textgradient } from "@/src/styles/themes";
+import { textgradient } from "@/src/styles/theme";
 import Dropdown from "@/src/components/Dropdown";
 
 const NODE_ENV = "development";

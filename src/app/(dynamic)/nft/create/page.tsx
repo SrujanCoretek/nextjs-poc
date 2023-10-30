@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 import { uploadToIpfs } from "./createServerFunctions";
 
 import { acceptedTypes } from "@/src/utils/constants";
-import { INPUT_LABEL } from "@/src/styles/themes";
+import { INPUT_LABEL } from "@/src/styles/theme";
 
 const NftCreate = () => {
   let isDark = false;
