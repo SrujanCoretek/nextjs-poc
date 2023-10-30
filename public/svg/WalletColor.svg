@@ -1,0 +1,40 @@
+<svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Iconly/Light/Wallet">
+<g id="Wallet">
+<path id="Stroke 1" d="M22.1389 14.3962H18.0906C16.6042 14.3953 15.3993 13.1914 15.3984 11.7049C15.3984 10.2185 16.6042 9.01458 18.0906 9.01367H22.1389" stroke="url(#paint0_linear_13706_69887)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Stroke 3" d="M18.549 11.6432H18.2373" stroke="url(#paint1_linear_13706_69887)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<path id="Stroke 5" fill-rule="evenodd" clip-rule="evenodd" d="M8.24766 3H16.8911C19.7892 3 22.1388 5.34951 22.1388 8.24766V15.4247C22.1388 18.3229 19.7892 20.6724 16.8911 20.6724H8.24766C5.34951 20.6724 3 18.3229 3 15.4247V8.24766C3 5.34951 5.34951 3 8.24766 3Z" stroke="url(#paint2_linear_13706_69887)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+<path id="Vector" d="M6.58283 14.8018C6.58743 14.8107 6.59171 14.8169 6.60191 14.8169L10.4862 14.82C10.4918 14.8193 10.4971 14.8166 10.5007 14.8124L13.5055 11.6805C13.5098 11.6761 13.5098 11.6699 13.5098 11.6654C13.5111 11.653 13.5026 11.6424 13.4907 11.6424L9.93742 11.6836C9.91998 11.6864 9.90978 11.6926 9.89794 11.6988L7.37245 13.807C7.34613 13.8286 7.31389 13.8056 7.31389 13.7781C7.31389 13.7681 7.31784 13.7588 7.32409 13.7523L12.1744 8.0385C12.1786 8.03369 12.1786 8.02922 12.1786 8.02613C12.1786 8.01375 12.1701 8.00309 12.1582 8.00309L8.50984 8C8.50425 8.00034 8.49931 8.00241 8.49537 8.00619L5.52111 11.3C5.51519 11.3045 5.51387 11.3107 5.51387 11.3168L6.58283 14.8018Z" fill="url(#paint3_linear_13706_69887)"/>
+</g>
+<defs>
+<linearGradient id="paint0_linear_13706_69887" x1="22.1389" y1="11.739" x2="15.3984" y2="11.739" gradientUnits="userSpaceOnUse">
+<stop stop-color="#F0899E"/>
+<stop offset="0.244792" stop-color="#9617D2"/>
+<stop offset="0.510417" stop-color="#4E0FFF"/>
+<stop offset="0.75" stop-color="#2C60FD"/>
+<stop offset="1" stop-color="#30F0F6"/>
+</linearGradient>
+<linearGradient id="paint1_linear_13706_69887" x1="18.8489" y1="11.649" x2="17.9375" y2="11.649" gradientUnits="userSpaceOnUse">
+<stop stop-color="#F0899E"/>
+<stop offset="0.244792" stop-color="#9617D2"/>
+<stop offset="0.510417" stop-color="#4E0FFF"/>
+<stop offset="0.75" stop-color="#2C60FD"/>
+<stop offset="1" stop-color="#30F0F6"/>
+</linearGradient>
+<linearGradient id="paint2_linear_13706_69887" x1="22.1388" y1="11.948" x2="3" y2="11.948" gradientUnits="userSpaceOnUse">
+<stop stop-color="#F0899E"/>
+<stop offset="0.244792" stop-color="#9617D2"/>
+<stop offset="0.510417" stop-color="#4E0FFF"/>
+<stop offset="0.75" stop-color="#2C60FD"/>
+<stop offset="1" stop-color="#30F0F6"/>
+</linearGradient>
+<linearGradient id="paint3_linear_13706_69887" x1="15.5" y1="13.5696" x2="3.5" y2="13.5696" gradientUnits="userSpaceOnUse">
+<stop stop-color="#F0899E"/>
+<stop offset="0.244792" stop-color="#9617D2"/>
+<stop offset="0.510417" stop-color="#4E0FFF"/>
+<stop offset="0.75" stop-color="#2C60FD"/>
+<stop offset="1" stop-color="#30F0F6"/>
+</linearGradient>
+</defs>
+</svg>
