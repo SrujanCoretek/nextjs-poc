@@ -6,7 +6,7 @@ import { redirect } from "next/navigation";
 
 import { processIpfsUrl, shortenAddress } from "@/src/utils/helper";
 import { getMarketplaceItem } from "../../serverFunctions/functions";
-import { textgradient } from "@/src/styles/themes";
+import { textgradient } from "@/src/styles/theme";
 // import { Metadata } from "next";
 
 const BASE_UI_URL = "http://localhost:30001/api/v1";

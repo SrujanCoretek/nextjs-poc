@@ -4,7 +4,7 @@ import Link from "next/link";
 import { getAllCollections } from "./serverFunctions/functions";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { SECTION_WRAPPER } from "../styles/themes";
+import { SECTION_WRAPPER } from "../styles/theme";
 
 export default function Home() {
   const router = useRouter();

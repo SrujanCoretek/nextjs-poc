@@ -9,7 +9,7 @@ import {
   NFT_CARD_DARK_BG,
   NFT_CARD_LIGHT_BG,
   NFT_USER_IMAGE,
-} from "../styles/themes";
+} from "../styles/theme";
 
 import { useRouter } from "next/navigation";
 import { displayPrice, processIpfsUrl } from "../utils/helper";

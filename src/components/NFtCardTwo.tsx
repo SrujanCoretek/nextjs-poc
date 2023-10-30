@@ -3,7 +3,7 @@
 import React, { FC } from "react";
 
 import { processIpfsUrl } from "../utils/helper";
-import { NFT_CARD_BACKGROUND } from "../styles/themes";
+import { NFT_CARD_BACKGROUND } from "../styles/theme";
 // import Share from "./PopOver/Share";
 // import { NFT_CARD_BACKGROUND } from "../styles/theme";
 // import type { NftCard } from "../types/ui";

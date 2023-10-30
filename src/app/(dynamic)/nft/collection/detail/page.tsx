@@ -9,7 +9,7 @@ import {
   getAllCollections,
   getNftFromCollection,
 } from "@/src/app/serverFunctions/functions";
-import { textgradient } from "@/src/styles/themes";
+import { textgradient } from "@/src/styles/theme";
 import Share from "@/src/components/PopOver/Share";
 import { toast } from "react-toastify";
 import CopyImage from "@/src/components/copyImage";

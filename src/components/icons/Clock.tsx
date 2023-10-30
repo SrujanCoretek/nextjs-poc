@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { textgradient } from "../../styles/themes";
+import { textgradient } from "../../styles/theme";
 
 interface Props {
   deadline: string;
